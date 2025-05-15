@@ -1,26 +1,32 @@
 # Vendo Sync Planner 🗓️
 
-CLI-narzędzie do automatycznego “wpychania” luźnych zadań z kalendarza **Backlog** do pierwszych wolnych okien w kalendarzu **Plan** (08:00-16:00, min gap = 15 min) w horyzoncie 30 dni.
+CLI-narzędzie do automatycznego “wpychania” luźnych zadań z kalendarza **Backlog** do pierwszych wolnych okien w kalendarzu **Plan** (08:00–16:00, min gap = 15 min).
 
 ## Instalacja
-```bash
-python -m venv .venv && source .venv/Scripts/activate  # Windows PowerShell
+```powershell
+cd C:\Py\gcalplanner
+python -m venv gcalplanner
+.\gcalplanner\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-## Szybki start
-```bash
-cp .env.example .env               # uzupełnij wartości
-python -m vendo_sync.cli.chat_cli  # uruchom tryb interaktywny
+## Chat‑REPL
+```powershell
+copy .env.example .env   # uzupełnij OPENAI_API_KEY
+python -m vendo_sync.cli.chat_cli chat
 ```
 
-## Struktura katalogów
-```
-vendo_sync/
-├─ planner/           # logika pobierania, planowania, zapisu
-├─ cli/               # interaktywny REPL :run / :auto / …
-├─ tests/             # pytest
-└─ ...
-```
 
-Szczegóły wymagań i roadmapa → patrz `docs/BRIEF.md` (prompt użytkownika).
+## 💡 Skróty uruchomieniowe
+
+Po aktywacji venv możesz skorzystać z gotowych skryptów w katalogu głównym:
+
+| Skrypt | Co robi |
+|--------|---------|
+| `run_chat.ps1`  | Otwiera PowerShell‑owy chat‑REPL (ChatGPT‑o3) |
+| `run_planner.ps1` | Uruchamia komendę `:run` planera |
+| `run_chat.bat`  | To samo dla `cmd.exe` |
+| `run_planner.bat` | To samo dla `cmd.exe` |
+
+Skrypty sprawdzają, czy istnieje lokalny venv `gcalplanner\Scripts\python.exe`.  
+Jeśli tak – używają go; jeśli nie – wołają globalnego `python`.
