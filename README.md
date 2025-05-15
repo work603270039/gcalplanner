@@ -1,32 +1,26 @@
-# Vendo Sync Planner 🗓️
+# O3 Chat – skeleton do przeglądania plików
 
-CLI-narzędzie do automatycznego “wpychania” luźnych zadań z kalendarza **Backlog** do pierwszych wolnych okien w kalendarzu **Plan** (08:00–16:00, min gap = 15 min).
+## Zawartość
+| plik                | opis                                                |
+|---------------------|-----------------------------------------------------|
+| `file_tools.py`     | Implementacja narzędzi (ls / cat / run)             |
+| `agent_tools.toml`  | Deklaracja narzędzi dla `vendo_sync.cli.chat_cli`   |
 
-## Instalacja
-```powershell
-cd C:\Py\gcalplanner
-python -m venv gcalplanner
-.\gcalplanner\Scripts\Activate.ps1
-pip install -r requirements.txt
+## Użycie
+
+```bash
+# 1. (Jednorazowo) instalacja vendo_sync:
+pip install -U vendo_sync>=0.4
+
+# 2. Uruchomienie chata z narzędziami:
+python -m vendo_sync.cli.chat_cli chat --tools-file agent_tools.toml
 ```
 
-## Chat‑REPL
-```powershell
-copy .env.example .env   # uzupełnij OPENAI_API_KEY
-python -m vendo_sync.cli.chat_cli chat
+**Przykład konwersacji**
+```console
+You: pokaż pliki
+AI: (tool call) {"name":"ls","arguments":{"path":"."}}
+AI: ['README.md', 'file_tools.py', 'agent_tools.toml']
 ```
 
-
-## 💡 Skróty uruchomieniowe
-
-Po aktywacji venv możesz skorzystać z gotowych skryptów w katalogu głównym:
-
-| Skrypt | Co robi |
-|--------|---------|
-| `run_chat.ps1`  | Otwiera PowerShell‑owy chat‑REPL (ChatGPT‑o3) |
-| `run_planner.ps1` | Uruchamia komendę `:run` planera |
-| `run_chat.bat`  | To samo dla `cmd.exe` |
-| `run_planner.bat` | To samo dla `cmd.exe` |
-
-Skrypty sprawdzają, czy istnieje lokalny venv `gcalplanner\Scripts\python.exe`.  
-Jeśli tak – używają go; jeśli nie – wołają globalnego `python`.
+> Uwaga: funkcja `run` pozwala uruchomić dowolny program; stosuj tylko lokalnie!

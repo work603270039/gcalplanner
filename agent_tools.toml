@@ -1,0 +1,14 @@
+[[tools]]
+name     = "ls"
+module   = "file_tools"
+function = "ls"
+
+[[tools]]
+name     = "cat"
+module   = "file_tools"
+function = "cat"
+
+[[tools]]
+name     = "run"
+module   = "file_tools"
+function = "run"
